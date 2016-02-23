@@ -8,4 +8,10 @@ let createItem = (text, priority) => {
   document.getElementById('todoContainer').appendChild(item);
 };
 
+let addItem = () => {
+  let text = window.prompt();
+  if(text)
+    createItem(text);
+};
+
 createItem('Hello, world!');
