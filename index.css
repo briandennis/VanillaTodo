@@ -68,6 +68,10 @@ button:hover{
   background: blue;
 }
 
+.todoItem{
+  background: orange;
+}
+
 footer{
   width: 100%;
   height: 5%;
