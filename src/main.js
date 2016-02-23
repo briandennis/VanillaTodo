@@ -4,7 +4,7 @@ let createItem = (text, priority) => {
 
   content.innerHTML = text;
   item.appendChild(content);
-  item.class = 'todoItem';
+  item.className = 'todoItem';
   document.getElementById('todoContainer').appendChild(item);
 };
 
