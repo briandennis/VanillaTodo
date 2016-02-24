@@ -1,10 +1,30 @@
+let deleteButton = {
+  state: 0,
+  update: function(){
+    console.log('This is at least running!');
+    if(this.state === 0){
+      this.state = 1;
+    }
+    else{
+      let deleteList = document.getElementsByClassName('delete');
+      while(deleteList.length > 0){
+        let curr = deleteList[0];
+        console.log('Deleting: ' + curr.innerHTML);
+        curr.parentNode.removeChild(curr);
+      }
+      this.state = 0;
+    }
+  }
+};
+
 let createItem = (text, priority) => {
   let item = document.createElement('div');
   let content = document.createElement('h2');
 
   content.innerHTML = text;
   item.appendChild(content);
-  item.className = 'todoItem';
+  item.className = 'todoItem delete';
+  item.click(deleteButton.update);
   document.getElementById('todoContainer').appendChild(item);
 };
 
