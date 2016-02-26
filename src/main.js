@@ -20,9 +20,15 @@ let deleteButton = {
 let createItem = (text, priority) => {
   let item = document.createElement('div');
   let content = document.createElement('h2');
+  let button = document.createElement('button');
+
+  button.innerHTML = 'X';
+  button.style.color = 'white';
+  button.style.fontSize = '1.2em';
 
   content.innerHTML = text;
   item.appendChild(content);
+  item.appendChild(button);
   item.className = 'todoItem delete';
   item.click(deleteButton.update);
   document.getElementById('todoContainer').appendChild(item);
