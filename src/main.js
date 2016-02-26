@@ -1,24 +1,22 @@
-let deleteButton = {
-  state: 0,
-  update: function(){
-    console.log('This is at least running!');
-    if(this.state === 0){
-      this.state = 1;
+let deleteButtonHandler = () => {
+  var inDeleteMode = false;
+
+  return () => {
+    console.log('This at least entered!');
+    if(inDeleteMode === false){
+      let todoItems = document.getElementsByClassName('todoItem');
+      for(let i = 0; i < todoItems.length; i++){
+        todoItems[i].className = 'todoItem upForDeletion';
+      }
+      inDeleteMode = true;
     }
     else{
-      let deleteList = document.getElementsByClassName('delete');
-      while(deleteList.length > 0){
-        let curr = deleteList[0];
-        console.log('Deleting: ' + curr.innerHTML);
-        curr.parentNode.removeChild(curr);
-      }
-      this.state = 0;
+      console.log('detected state change!');
     }
-  }
+  };
 };
 
 let removeItem = (event) => {
-  console.log('I fired!');
   let itemToDelete = event.target.parentNode;
   itemToDelete.parentNode.removeChild(itemToDelete);
 };
@@ -37,7 +35,6 @@ let createItem = (text, priority) => {
   item.appendChild(content);
   item.appendChild(button);
   item.className = 'todoItem delete';
-  item.click(deleteButton.update);
   document.getElementById('todoContainer').appendChild(item);
 };
 
@@ -48,3 +45,7 @@ let addItem = () => {
 };
 
 createItem('Hello, world!');
+
+let deleteButtonMode = new deleteButtonHandler();
+
+document.getElementById('deleteNotes').addEventListener('click', deleteButtonMode);
