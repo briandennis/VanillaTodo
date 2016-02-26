@@ -21,6 +21,14 @@ let removeItem = (event) => {
   itemToDelete.parentNode.removeChild(itemToDelete);
 };
 
+let checkDelete = function(event){
+  console.log('omg, this ran!');
+  let item = event.target;
+  if(item.className.includes('inDeleteMode')){
+    item.className = 'todoItem delete';
+  }
+};
+
 let createItem = (text, priority) => {
   let item = document.createElement('div');
   let content = document.createElement('h2');
@@ -34,15 +42,10 @@ let createItem = (text, priority) => {
   content.innerHTML = text;
   item.appendChild(content);
   item.appendChild(button);
-  item.className = 'todoItem delete';
+  item.className = 'todoItem';
   document.getElementById('todoContainer').appendChild(item);
 
-  item.addEventListener('click', function(event){
-    let item = event.target;
-    if(item.className.includes('inDeleteMode')){
-      item.className = 'todoItem delete';
-    }
-  });
+  item.addEventListener('click', checkDelete);
 };
 
 let addItem = () => {
@@ -51,8 +54,12 @@ let addItem = () => {
     createItem(text);
 };
 
-createItem('Hello, world!');
+window.onload = function(){
+  console.log('page loaded');
 
-let deleteButtonMode = new deleteButtonHandler();
+  createItem('Hello, world!');
 
-document.getElementById('deleteNotes').addEventListener('click', deleteButtonMode);
+  let deleteButtonMode = new deleteButtonHandler();
+
+  document.getElementById('deleteNotes').addEventListener('click', deleteButtonMode);
+};
