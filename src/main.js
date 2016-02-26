@@ -17,15 +17,21 @@ let deleteButton = {
   }
 };
 
+let removeItem = (event) => {
+  console.log('I fired!');
+  let itemToDelete = event.target.parentNode;
+  itemToDelete.parentNode.removeChild(itemToDelete);
+};
+
 let createItem = (text, priority) => {
   let item = document.createElement('div');
   let content = document.createElement('h2');
   let button = document.createElement('button');
 
-  button.innerHTML = '<span class=\'deleteButtonText\'>X</span>';
+  button.innerHTML = 'X';
   button.style.fontSize = '1.2em';
-  button.style.color = 'black';
   button.className = 'itemButton';
+  button.addEventListener('click',removeItem);
 
   content.innerHTML = text;
   item.appendChild(content);
