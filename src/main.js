@@ -36,6 +36,7 @@ let checkDelete = function(event){
   let item = event.target;
   if(item.className.includes('inDeleteMode')){
     item.className = 'todoItem delete';
+    document.getElementById('deleteNotes').focus();
   }
 };
 
