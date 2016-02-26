@@ -3,15 +3,25 @@ let deleteButtonHandler = () => {
 
   return () => {
     console.log('This at least entered!');
+    let todoItems = document.getElementsByClassName('todoItem');
     if(inDeleteMode === false){
-      let todoItems = document.getElementsByClassName('todoItem');
       for(let i = 0; i < todoItems.length; i++){
         todoItems[i].className = 'todoItem inDeleteMode';
       }
       inDeleteMode = true;
     }
     else{
-      console.log('detected state change!');
+      for(let i = todoItems.length - 1; i >= 0; i--){
+        let curr = todoItems[i];
+        if(curr.className.includes('delete')){
+          curr.remove();
+        }
+        else{
+          curr.className = 'todoItem';
+        }
+      }
+      inDeleteMode = false;
+      document.activeElement.blur();
     }
   };
 };
