@@ -6,7 +6,7 @@ let deleteButtonHandler = () => {
     if(inDeleteMode === false){
       let todoItems = document.getElementsByClassName('todoItem');
       for(let i = 0; i < todoItems.length; i++){
-        todoItems[i].className = 'todoItem upForDeletion';
+        todoItems[i].className = 'todoItem inDeleteMode';
       }
       inDeleteMode = true;
     }
@@ -36,6 +36,13 @@ let createItem = (text, priority) => {
   item.appendChild(button);
   item.className = 'todoItem delete';
   document.getElementById('todoContainer').appendChild(item);
+
+  item.addEventListener('click', function(event){
+    let item = event.target;
+    if(item.className.includes('inDeleteMode')){
+      item.className = 'todoItem delete';
+    }
+  });
 };
 
 let addItem = () => {

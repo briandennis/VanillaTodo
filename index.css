@@ -133,6 +133,10 @@ a:visited{
   color: #ED4337;
 }
 
-.upForDeletion{
+.inDeleteMode{
   background: blue;
+}
+
+.delete{
+  border: solid 5px green;
 }
