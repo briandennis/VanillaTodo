@@ -134,9 +134,10 @@ a:visited{
 }
 
 .inDeleteMode{
-  background: blue;
+  border: solid 2px #ED4337;
 }
 
 .delete{
-  border: solid 5px green;
+  background: rgba(237, 67, 55, 0.5);
+  border: solid 2px #ED4337
 }
