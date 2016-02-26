@@ -22,9 +22,10 @@ let createItem = (text, priority) => {
   let content = document.createElement('h2');
   let button = document.createElement('button');
 
-  button.innerHTML = 'X';
-  button.style.color = 'white';
+  button.innerHTML = '<span class=\'deleteButtonText\'>X</span>';
   button.style.fontSize = '1.2em';
+  button.style.color = 'black';
+  button.className = 'itemButton';
 
   content.innerHTML = text;
   item.appendChild(content);
