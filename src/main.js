@@ -28,7 +28,48 @@ let deleteButtonHandler = () => {
 
 let removeItem = (event) => {
   let itemToDelete = event.target.parentNode;
-  itemToDelete.parentNode.removeChild(itemToDelete);
+  let itemsContainer = itemToDelete.parentNode;
+  itemsContainer.removeChild(itemToDelete);
+
+  if(itemsContainer.childNodes.length === 0){
+    deleteButton.reset();
+  }
+};
+
+let deleteButton = {
+
+  inDeleteMode: false,
+
+  reset: () => {
+    this.inDeleteMode = false;
+    document.activeElement.blur();
+  },
+
+  toggleMode: function() {
+    console.log('This at least entered!');
+    let todoItems = document.getElementsByClassName('todoItem');
+    if(todoItems.length === 0)
+      return;
+    if(this.inDeleteMode === false){
+      for(let i = 0; i < todoItems.length; i++){
+        todoItems[i].className = 'todoItem inDeleteMode';
+      }
+      this.inDeleteMode = true;
+    }
+    else{
+      for(let i = todoItems.length - 1; i >= 0; i--){
+        let curr = todoItems[i];
+        if(curr.className.includes('delete')){
+          curr.remove();
+        }
+        else{
+          curr.className = 'todoItem';
+        }
+      }
+      this.inDeleteMode = false;
+      document.activeElement.blur();
+    }
+  }
 };
 
 let checkDelete = function(event){
@@ -76,5 +117,5 @@ window.onload = function(){
 
   let deleteButtonMode = new deleteButtonHandler();
 
-  document.getElementById('deleteNotes').addEventListener('click', deleteButtonMode);
+  document.getElementById('deleteNotes').addEventListener('click', deleteButton.toggleMode);
 };
