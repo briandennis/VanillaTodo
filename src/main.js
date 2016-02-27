@@ -32,6 +32,7 @@ let removeItem = (event) => {
   itemsContainer.removeChild(itemToDelete);
 
   if(itemsContainer.childNodes.length === 0){
+    console.log('trying...');
     deleteButton.reset();
   }
 };
@@ -41,20 +42,17 @@ let deleteButton = {
   inDeleteMode: false,
 
   reset: () => {
-    this.inDeleteMode = false;
+    deleteButton.inDeleteMode = false;
     document.activeElement.blur();
   },
 
   toggleMode: function() {
-    console.log('This at least entered!');
     let todoItems = document.getElementsByClassName('todoItem');
-    if(todoItems.length === 0)
-      return;
-    if(this.inDeleteMode === false){
+    if(deleteButton.inDeleteMode === false){
       for(let i = 0; i < todoItems.length; i++){
         todoItems[i].className = 'todoItem inDeleteMode';
       }
-      this.inDeleteMode = true;
+      deleteButton.inDeleteMode = true;
     }
     else{
       for(let i = todoItems.length - 1; i >= 0; i--){
@@ -66,7 +64,7 @@ let deleteButton = {
           curr.className = 'todoItem';
         }
       }
-      this.inDeleteMode = false;
+      deleteButton.inDeleteMode = false;
       document.activeElement.blur();
     }
   }
