@@ -38,6 +38,10 @@ let checkDelete = function(event){
     item.className = 'todoItem delete';
     document.getElementById('deleteNotes').focus();
   }
+  else if (item.className.includes('delete')){
+    item.className = 'todoItem inDeleteMode';
+    document.getElementById('deleteNotes').focus();
+  }
 };
 
 let createItem = (text, priority) => {
